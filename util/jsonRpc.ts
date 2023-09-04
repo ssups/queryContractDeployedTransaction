@@ -70,7 +70,7 @@ export class CustomRpcProvider {
     return parseInt(await this._fetch(method), 16);
   }
 
-  async _fetch(method: string, params: any[] = []) {
+  private async _fetch(method: string, params: any[] = []) {
     const res = await fetch(this.end_point, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
