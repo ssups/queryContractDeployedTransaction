@@ -4,10 +4,7 @@ export function getChecksumAddress(address: string) {
   address = address.replace("0x", "").toLowerCase();
   if (address.length !== 40) throw new Error("wrong address");
 
-  const hashed = keccak256(address).reduce(
-    (acc, cur) => (acc += cur.toString(16).padStart(2, "0")),
-    "0x"
-  );
+  const hashed = keccak256(address).toString("hex");
 
   let ret = "0x";
   for (let i = 0; i < address.length; i++) {
