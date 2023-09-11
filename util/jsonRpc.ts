@@ -53,7 +53,7 @@ export class CustomRpcProvider {
    * @param txHash
    * @returns list of calls to other contracts containing one object per call, in the order called by the transaction
    */
-  async traceTransation(txHash: string): Promise<any[]> {
+  async traceTransaction(txHash: string): Promise<any[]> {
     const method = "trace_transaction";
     const params = [txHash];
 

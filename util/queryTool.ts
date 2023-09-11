@@ -36,7 +36,7 @@ export class QueryTool {
 
     // deployed with factory contract
     if (!resTx[0]) {
-      if (!(await this.provider.traceTransation(blockWithTransactions.transactions[0].hash))) {
+      if (!(await this.provider.traceTransaction(blockWithTransactions.transactions[0].hash))) {
         throw new Error(`
         !!! This contract deployed with factory contract 
         But this node doesn't support trace_transaction
@@ -45,7 +45,7 @@ export class QueryTool {
         //
       } else {
         const promises = blockWithTransactions.transactions.map(async (tx: any) => {
-          const traces = await this.provider.traceTransation(tx.hash);
+          const traces = await this.provider.traceTransaction(tx.hash);
           for (const trace of traces) {
             if (trace.result.address && trace.result.address === contractAddress.toLowerCase()) {
               deployedBy = `Factory Contract(${trace.action.creationMethod}): ${getChecksumAddress(
