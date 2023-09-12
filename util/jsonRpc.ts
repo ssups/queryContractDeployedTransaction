@@ -82,6 +82,8 @@ export class CustomRpcProvider {
       }),
     });
 
-    return (await res.json()).result;
+    const resolved = await res.json();
+    if (resolved.error) throw resolved.error;
+    return resolved.result;
   }
 }
